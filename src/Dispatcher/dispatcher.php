@@ -49,7 +49,6 @@ class Dispatcher {
 
     private function renderPage(string $html): void {
         echo $html;
-        }
 
         /*echo <<<END
         <!DOCTYPE html>
