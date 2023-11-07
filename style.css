@@ -34,7 +34,7 @@ ul {
     margin-top: 150%;
 }
 
-li {
+.element_menu {
     padding: 10px;
     display: flex;
     justify-content: space-between;

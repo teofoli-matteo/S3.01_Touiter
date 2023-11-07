@@ -13,6 +13,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'default';
 
+// Si l'action demandée est vide ou égale à 'default', rediriger vers DisplayTweetsAction
+if (empty($action) || $action === 'default') {
+    $action = 'displayTweets';
+}
+
 $dispatcher = new Dispatcher($action);
 $dispatcher->run();
 

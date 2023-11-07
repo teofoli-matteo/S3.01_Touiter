@@ -88,7 +88,7 @@
 <body>
     <div class="container">
         <h1>Inscription</h1>
-        <form method="post" action="index.php">
+        <form method="post" action="index.php?action=register">
 
 
             <label for="idUser">Pseudo:</label>
