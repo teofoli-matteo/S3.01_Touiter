@@ -69,17 +69,16 @@
 <body>
     <div class="container">
         <h2>Connexion</h2>
-        <form action="/src/Db/signin.php" method="POST">
+        <form action="index.php?action=signin" method="POST">
             <label for="email">Email :</label>
             <input type="email" id="email" name="email" required><br>
 
             <label for="password">Mot de passe :</label>
             <input type="password" id="password" name="password" required><br>
 
-
             <input type="submit" value="Se connecter">
         </form>
     </div>
 </body>
-</html>
 
+</html>

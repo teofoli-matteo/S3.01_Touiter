@@ -5,9 +5,12 @@
 class AuthException extends \Exception {}
 
 class Auth {
-    public static function authenticate($email, $password) {
-        $hashedPassword = self::getHashedPasswordFromDatabase($email);
+    public static function authenticate($email, $password, $db) {
+        $hashedPassword = self::getHashedPasswordFromDatabase($email, $db);
         if (password_verify($password, $hashedPassword)) {
+            // Authentification réussie, créez un cookie
+            $userId = self::getUserId($email, $db); // Obtenez l'ID de l'utilisateur
+            setcookie('user_id', $userId, time() + 3600, '/'); // Le cookie expire dans 1 heure
             return true;
         } else {
             throw new AuthException("L'authentification a échoué. Veuillez vérifier vos identifiants.");

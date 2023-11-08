@@ -10,6 +10,7 @@ namespace src\Dispatcher;
 use src\Action\RegisterAction;
 use src\Action\SigninAction;
 use src\Action\DisplayTweetsAction;
+use src\Action\PostTweetAction;
 
 
 class Dispatcher {
@@ -26,7 +27,7 @@ class Dispatcher {
             $reg = new RegisterAction();
             $this->renderPage($reg->execute());
             break;
-            case 'login':
+            case 'signin':
             $log = new SigninAction();
             $this->renderPage($log->execute());
             break;
@@ -34,8 +35,16 @@ class Dispatcher {
                 $displayTweets = new DisplayTweetsAction();
                 $this->renderPage($displayTweets->execute());
                 break;
+            case 'postTweet':
+                $postTweet = new PostTweetAction();
+                $postTweet->execute();
+                break;
+                case 'tweetForm':
+    include 'src/User/tweetForm.php';
+    break;
+
             default:
-                 $this->renderPage(file_get_contents('menu.html'));
+                 $this->renderPage(file_get_contents('menu.php'));
                 break;
         
         }
@@ -49,35 +58,5 @@ class Dispatcher {
 
     private function renderPage(string $html): void {
         echo $html;
-
-        /*echo <<<END
-        <!DOCTYPE html>
-        <html lang="fr">
-        <head>
-            <meta charset="UTF-8">
-            <title>Menu HTML</title>
-            <link rel="stylesheet" href="style.css">
-            <!-- Lien vers le CDN Bootstrap Icons -->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-            <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-        </head>
-        <body>
-            <div id="menu">
-                <div id="logo">
-                    <img src="logo.png" alt="Logo">
-                    <h4>Touiter.app</h4>
-                </div>
-                <ul>
-                    <li class="element_menu"><i class="bi bi-person-lines-fill"></i> <a href="index.php?action=register">Register</a></li>
-                    <li class="element_menu"><i class="bi bi-box-arrow-in-right"></i> <a href="index.php?action=login">Log-in</a></li>
-                    <li class="element_menu"><i class="bi bi-person-square"></i> Profile</li>
-                </ul>
-                <div id="deconnexion">
-                    <li class="element_menu"><i class="bi bi-box-arrow-in-left"></i> Deconnexion</li>
-                </div>
-            </div>
-        </body>
-        </html>
-        END;*/
     }
 }

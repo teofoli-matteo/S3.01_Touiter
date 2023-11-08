@@ -1,7 +1,6 @@
 <?php
 namespace src\Action;
 
-require_once 'action.php';
 use src\Db\connexionFactory;
 
 class SigninAction extends Action {
@@ -23,7 +22,11 @@ class SigninAction extends Action {
                     // Authentification réussie
                     session_start();
                     $_SESSION['user_id'] = $user['idUser'];
-                    header("Location: /" . $user['idUser']);
+
+                    // Création d'un cookie avec l'idUser
+                    setcookie('user_id', $user['idUser'], time() + 3600, '/'); // Le cookie expire dans 1 heure
+
+                    header("Location: /");
                     exit();
                 } else {
                     echo "L'authentification a échoué. Veuillez vérifier vos identifiants.";
@@ -32,7 +35,7 @@ class SigninAction extends Action {
                 echo "Erreur d'authentification: " . $e->getMessage();
             }
         } else {
-           ob_start();
+            ob_start();
             include 'src/User/login.php';
             return ob_get_clean();
         }
@@ -40,4 +43,4 @@ class SigninAction extends Action {
         return '';
     }
 }
-
+?>
