@@ -11,6 +11,8 @@ use src\Action\RegisterAction;
 use src\Action\SigninAction;
 use src\Action\DisplayTweetsAction;
 use src\Action\PostTweetAction;
+use src\Action\DeleteTweetAction;
+
 
 
 class Dispatcher {
@@ -39,9 +41,17 @@ class Dispatcher {
                 $postTweet = new PostTweetAction();
                 $postTweet->execute();
                 break;
+        
+               case 'delete-tweet':
+        $deleteTweet = new DeleteTweetAction();
+        $this->renderPage($deleteTweet->execute());
+        break;
                 case 'tweetForm':
     include 'src/User/tweetForm.php';
     break;
+
+
+
 
             default:
                  $this->renderPage(file_get_contents('menu.php'));
@@ -51,7 +61,6 @@ class Dispatcher {
     }
 
       private function displayDefaultPage(): void {
-        // Affiche les tweets à l'entrée sur le site web
         $displayTweets = new DisplayTweetsAction();
         $this->renderPage($displayTweets->execute());
     }

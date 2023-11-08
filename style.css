@@ -73,4 +73,8 @@ ul li:hover {
     border-radius: 20px;
 }
 
+div.pagination{
+    font-weight: 50px; 
+}
+
 

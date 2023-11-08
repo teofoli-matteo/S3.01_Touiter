@@ -31,6 +31,11 @@ ul {
     display: none;
 }
 
+img[img-touite]{
+    max-width: 20px;
+    max-height: 20px;
+}
+
 .user-link {
     text-decoration: none;
     color: #007bff;
@@ -40,3 +45,8 @@ ul {
 .user-link:hover {
     text-decoration: underline;
 }
+
+.pagination{
+    font-size: 4em;
+}
+

@@ -27,7 +27,7 @@ class RegisterAction extends Action {
             try {
                 $pdo = connexionFactory::makeConnection();
 
-                $stmt = $pdo->prepare("INSERT INTO users (idUser, email, passwd, nbFollower, Prenom, Nom,  role) VALUES (:idUser, :email, :password, 0,  :Prenom, :Nom, 1)");
+                $stmt = $pdo->prepare("INSERT INTO users (idUser, email, passwd, nbFollower, Prenom, Nom,  role) VALUES (:idUser, :email, :password, 0,  :Prenom, :Nom, 0)");
                 $stmt->bindParam(':email', $email);
                 $stmt->bindParam(':password', $hashedPassword);
                 $stmt->bindParam(':idUser', $idUser);
