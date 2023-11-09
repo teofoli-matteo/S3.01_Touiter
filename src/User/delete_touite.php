@@ -1,5 +1,6 @@
 <?php
-
+use src\Db\connexionFactory;
+use PDO;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["idTouite"])) {
