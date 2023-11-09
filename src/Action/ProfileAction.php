@@ -4,42 +4,135 @@ namespace src\Action;
 use src\Db\connexionFactory;
 use PDO;
 
-class ProfileAction extends Action {
-    private $userId;
-    private $userDetails;
-
-    public function __construct($userId) {
-        $this->userId = $userId;
-    }
-
+class ProfileAction {
     public function execute(): string {
-        $db = connexionFactory::makeConnection();
+        $idUser = $_COOKIE['user_id'];
+        if (!isset($_COOKIE['user_id'])) {
+            return "Veuillez vous connecter pour voir votre profil.";
+        }
 
-        // Récupérer les détails de l'utilisateur à partir de la base de données en fonction de $this->userId
-        $stmt = $db->prepare("SELECT * FROM Users WHERE idUser = :userId");
-        $stmt->bindParam(':userId', $this->userId, PDO::PARAM_STR);
-        $stmt->execute();
-        $this->userDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $pdo = connexionFactory::makeConnection();
 
-        ob_start();
-        ?>
-        <!DOCTYPE html>
-        <html lang="fr">
-        <head>
-            <meta charset="UTF-8">
-            <title>Profil de l'utilisateur</title>
-            <link rel="stylesheet" href="path/to/your/styles.css">
-        </head>
-        <body>
-            <h1>Profil de l'utilisateur <?php echo $this->userDetails['username']; ?></h1>
-            <!-- Affichez les détails de l'utilisateur ici -->
-            <p>Nom d'utilisateur : <?php echo $this->userDetails['username']; ?></p>
-            <p>Email : <?php echo $this->userDetails['email']; ?></p>
-            <!-- Ajoutez d'autres détails de l'utilisateur ici selon votre base de données -->
-        </body>
-        </html>
-        <?php
+            // Récupérer les touites de l'utilisateur
+            $stmt = $pdo->prepare("SELECT * FROM touite WHERE idUser = :idUser ORDER BY dateTouite DESC");
+            $stmt->bindParam(':idUser', $idUser);
+            $stmt->execute();
 
-        return ob_get_clean();
+            $myTouites = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Récupérer les touites des personnes que l'utilisateur suit
+            $stmt = $pdo->prepare("SELECT t.* FROM touite t
+                                    JOIN user_followers uf ON t.idUser = uf.idUser
+                                    WHERE uf.followerId = :idUser
+                                    ORDER BY dateTouite DESC");
+            $stmt->bindParam(':idUser', $idUser);
+            $stmt->execute();
+
+            $followedTouites = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Récupérer les touites mentionnant un tag auquel l'utilisateur est abonné
+            $stmt = $pdo->prepare("SELECT t.* FROM touite t
+                                    JOIN listetouites_tag ltt ON t.idTouite = ltt.idTouite
+                                    JOIN user_tag ut ON ltt.idTag = ut.idTag
+                                    WHERE ut.idUser = :idUser
+                                    ORDER BY dateTouite DESC");
+            $stmt->bindParam(':idUser', $idUser);
+            $stmt->execute();
+
+            $taggedTouites = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $html = '<h1>Mon profil</h1><h2>Mes Touites</h2><ul>';
+            foreach ($myTouites as $touite) {
+                $html .= '<li>';
+                $html .= '<strong>' . htmlspecialchars($touite['idUser']) . '</strong>';
+                $html .= '<p>' . htmlspecialchars($touite['message']) . '</p>';
+                $html .= '<small>' . htmlspecialchars($touite['dateTouite']) . '</small>';
+                $html .= '</li>';
+            }
+            $html .= '</ul>';
+
+            $html .= '<h2>Touites des personnes que je suis</h2><ul>';
+            foreach ($followedTouites as $touite) {
+                $html .= '<li>';
+                $html .= '<strong>' . htmlspecialchars($touite['idUser']) . '</strong>';
+                $html .= '<p>' . htmlspecialchars($touite['message']) . '</p>';
+                $html .= '<small>' . htmlspecialchars($touite['dateTouite']) . '</small>';
+                $html .= '</li>';
+            }
+            $html .= '</ul>';
+
+            $html .= '<h2>Touites contenant les tags auxquels je suis abonné</h2><ul>';
+            foreach ($taggedTouites as $touite) {
+                $html .= '<li>';
+                $html .= '<strong>' . htmlspecialchars($touite['idUser']) . '</strong>';
+                $html .= '<p>' . htmlspecialchars($touite['message']) . '</p>';
+                $html .= '<small>' . htmlspecialchars($touite['dateTouite']) . '</small>';
+                $html .= '</li>';
+            }
+            $html .= '<a href="menu.php" class="back-button">Retour au menu</a>';
+
+            $html .= '</ul>';
+
+            return $html;
+        } catch (PDOException $e) {
+            return "Erreur lors de la récupération des touites: " . $e->getMessage();
+        }
     }
 }
+?>
+<style>body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+li strong {
+    display: block;
+    color: #666;
+}
+
+li p {
+    margin: 10px 0;
+    color: #333;
+}
+
+li small {
+    display: block;
+    text-align: right;
+    color: #999;
+}
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #666;
+}
+
+</style>
