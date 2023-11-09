@@ -1,7 +1,9 @@
 <?php
 namespace src\Dispatcher;
 
+use src\Action\CalculerScoreMoyenAction;
 use src\Action\RegisterAction;
+use src\Action\ShowFollowers;
 use src\Action\SigninAction;
 use src\Action\DisplayTweetsAction;
 use src\Action\PostTweetAction;
@@ -54,6 +56,15 @@ class Dispatcher {
             case 'profileAction':
                 $profileUser = new ProfileAction();
                 $this->renderPage($profileUser->execute());
+                break;
+            case 'followers':
+                $showF = new ShowFollowers();
+                $this->renderPage($showF->execute());
+                break;
+
+            case 'scoreMoy':
+                $calculerScoreMoy = new CalculerScoreMoyenAction();
+                $this->renderPage($calculerScoreMoy->execute());
                 break;
             default:
                 $this->renderPage(file_get_contents('menu.php'));
