@@ -38,7 +38,7 @@ class SigninAction extends Action {
         } else {
             ob_start();
             include 'src/User/login.php';
-            return ob_get_clean();
+            return returnHTML();
         }
 
         return '';

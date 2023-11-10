@@ -5,19 +5,16 @@
     <title>Poster un touite</title>
     <style>
         body {
-            margin-left: 200px;
-            padding: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: #474242;
-            display: flex;
-            flex-direction : column;
-            align-items: center;
-            justify-content: center;
+            background-color: #fafafa;
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
 
         h2 {
             text-align: center;
-            color: black;
+            color: #333;
             margin-bottom: 20px;
         }
 
@@ -57,7 +54,7 @@
             width: 100%;
             padding: 10px;
             margin-top: 20px;
-            background-color: grey;
+            background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 4px;
@@ -66,7 +63,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: slategrey;
+            background-color: #0056b3;
         }
     </style>
 </head>
