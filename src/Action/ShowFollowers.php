@@ -11,7 +11,7 @@ class ShowFollowers extends Action {
             $db = connexionFactory::makeConnection();
 
             // Récupérer les followers de l'utilisateur connecté
-            $stmt = $db->prepare("SELECT idSuivi FROM abonnement WHERE idSuiveur = :user_id");
+            $stmt = $db->prepare("SELECT idUser FROM user_followers WHERE followerId = :user_id");
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
             $stmt->execute();
             $followers = $stmt->fetchAll(PDO::FETCH_ASSOC);
