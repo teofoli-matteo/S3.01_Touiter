@@ -53,16 +53,15 @@ class DeleteTweetAction extends Action {
 
             // Afficher le formulaire de suppression avec les tweets de l'utilisateur
             $htmlContent .= "<h1>Supprimer un touite</h1>";
-            $htmlContent .= '<form method="post" action="index.php?action=delete-tweet">
+            $htmlContent .= '<form class="listes" method="post" action="index.php?action=delete-tweet">
                                 <label for="tweetId">ID du Touite à supprimer :</label>
                                 <input type="text" id="tweetId" name="tweet_id" required>
                                 <button type="submit">Supprimer</button>
                             </form>';
-            $htmlContent .= '<button onclick="window.location.href=\'menu.php\';">Retour au menu</button>';
             $htmlContent .= "<h2>Vos Tweets :</h2>";
             $htmlContent .= "<ul>";
             foreach ($tweets as $tweet) {
-                $htmlContent .= "<li><strong>ID du Tweet :</strong> " . $tweet['idTouite'] . " - <strong>Message :</strong> " . $tweet['message'] . " 
+                $htmlContent .= "<li class='listes'><strong>ID du Tweet :</strong> " . $tweet['idTouite'] . " - <strong>Message :</strong> " . $tweet['message'] . " 
                         <form method='post' action='index.php?action=delete-tweet'>
                             <input type='hidden' name='tweet_id' value='" . $tweet['idTouite'] . "'>
                             <button type='submit'>Supprimer</button>
@@ -79,3 +78,5 @@ class DeleteTweetAction extends Action {
     }
 }
 ?>
+
+<link rel="stylesheet" href="css/sections.css">
