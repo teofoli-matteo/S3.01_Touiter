@@ -5,11 +5,14 @@
     <title>Poster un touite</title>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fafafa;
-            color: #333;
-            margin: 0;
+            margin-left: 200px;
             padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #474242;
+            display: flex;
+            flex-direction : column;
+            align-items: center;
+            justify-content: center;
         }
 
         h2 {
@@ -20,8 +23,7 @@
 
         form {
             background-color: #fff;
-            width: 80%;
-            max-width: 500px;
+            width: 400px;
             margin: 40px auto;
             padding: 30px;
             border-radius: 8px;
@@ -50,32 +52,37 @@
         }
 
         input[type="submit"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #007BFF;
-            color: white;
+            background-color: darkgray;
+            color: black;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 16px;
             cursor: pointer;
-            font-size: 18px;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto; /* Added to center the button horizontally */
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: slategrey;
+        }
+
+        h2 {
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h2>Touite</h2>
+    <h2>Laissez libre court à votre imagination ! TOUITEZ !</h2>
     <form action="index.php?action=postTweet" method="POST" enctype="multipart/form-data">
         <label for="tweet">Touite :</label><br>
         <textarea id="tweet" name="message" required maxlength="235"></textarea><br>
         <label for="image">Image (optionnel) :</label><br>
         <input type="file" id="image" name="image"><br>
         <input type="submit" value="Touiter">
-<button onclick="history.back();">Retour</button>
     </form>
 </body>
 </html>
