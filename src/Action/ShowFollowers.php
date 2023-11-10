@@ -26,13 +26,13 @@ class ShowFollowers extends Action {
 
             ob_start();
             echo '<div class="followers-container">';
-            echo "<h2>Mes Followers :</h2>";
+            echo "<h2 id='titre-noir'>Mes Followers :</h2>";
             echo "<ul class='followers-list'>";
             foreach ($followerNames as $followerName) {
                 echo "<li>{$followerName}</li>";
             }
             echo "</ul>";
-            echo '<a href="menu.php" class="back-button">Retour au menu</a>';
+            echo '<a href="index.php?action=profileAction" class="back-button">Retour</a>';
             echo '</div>';
             return ob_get_clean();
         } else {
@@ -43,57 +43,5 @@ class ShowFollowers extends Action {
     }
 }
 ?>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background-color: grey;
-        color: #1c1e21;
-    }
 
-    .followers-container {
-        max-width: 600px;
-        margin: 20px auto;
-        background-color: #fff; /* Fond de la boîte des followers */
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-        color: black;
-        font-size: 24px;
-        margin-bottom: 15px;
-    }
-
-    .followers-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .followers-list li {
-        background-color: #f5f8fa; /* Une nuance de gris similaire à Twitter */
-        margin-bottom: 10px;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .back-button {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #333;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 3px;
-        transition: background-color 0.3s ease;
-    }
-
-    .back-button:hover {
-        background-color: #666;
-    }
-</style>
-
+<link rel="stylesheet" href="css/sections.css">
