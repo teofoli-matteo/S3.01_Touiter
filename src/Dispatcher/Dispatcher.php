@@ -68,6 +68,10 @@ class Dispatcher {
                 $calculerScoreMoy = new CalculerScoreMoyenAction();
                 $this->renderPage($calculerScoreMoy->execute());
                 break;
+            case 'ListeTweets':
+                $liketweet = new LikeDislikeAction();
+                $this->renderPage($liketweet->execute());
+                break;
             case 'Administration':
                 $admin = new AdminAction();
                 $this->renderPage($admin->execute());
