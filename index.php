@@ -26,6 +26,7 @@
             <li class="element_menu"><i class="bi bi-trash"></i> <a href="index.php?action=delete-tweet">Supprimer un Touite</a></li>
             <li class="element_menu"><i class="bi bi-hash"></i> <a href="index.php?action=listTag">Liste des tag</a></li>
             <li class="element_menu"><i class="bi bi-people"></i> <a href="index.php?action=followUser">Liste des User</a></li>
+            <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=ListeTweets">Liste des Touites</a></li>
             <li class="element_menu"><i class="bi bi-pc"></i> <a href="index.php?action=Administration">Administration</a></li>
         <?php endif; ?>
     </ul>
