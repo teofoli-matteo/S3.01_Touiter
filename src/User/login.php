@@ -8,14 +8,14 @@
     <title>Connexion</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
+            margin-left: 200px;
             padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #474242;
             display: flex;
-            justify-content: center;
+            flex-direction : column;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
         }
 
         .container {
@@ -25,6 +25,7 @@
             padding: 20px;
             width: 300px;
             text-align: center;
+            margin-top: 8em;
         }
 
         h2 {
@@ -50,8 +51,8 @@
         }
 
         input[type="submit"] {
-            background-color: #4caf50;
-            color: white;
+            background-color: darkgray;
+            color: black;
             border: none;
             border-radius: 5px;
             padding: 15px;
@@ -61,7 +62,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: slategrey;
         }
     </style>
 </head>

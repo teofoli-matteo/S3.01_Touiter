@@ -9,16 +9,14 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            font-family: 'Poppins';
-            background-color: #474242;
-            margin: 0;
+            margin-left: 200px;
             padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #474242;
             display: flex;
-            justify-content: center;
+            flex-direction : column;
             align-items: center;
-            height: 80vh;
-            color: #fff;
+            justify-content: center;
         }
 
 
@@ -28,8 +26,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             width: 300px;
-            margin-top:8em;
-
+            margin-top:3em;
 
         }
 
@@ -65,8 +62,8 @@
 
 
         input[type="submit"] {
-            background-color: #4caf50;
-            color: white;
+            background-color: darkgray;
+            color: black;
             border: none;
             border-radius: 5px;
             padding: 15px;
@@ -77,7 +74,7 @@
 
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: slategrey;
         }
     </style>
 

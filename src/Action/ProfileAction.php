@@ -50,10 +50,9 @@ class ProfileAction {
             $scoreAction = new CalculerScoreMoyenAction();
             $averageScore = $scoreAction->execute();
 
-            // specifier le chemin vers le fichier css
-            $html = '<h1>Mon profil</h1>';
+            $html = '<h1 id="monP">Mon profil</h1>';
             $html .= '<a href="index.php?action=followers" class="followers-button">Mes Abonnés</a>';
-            $html .= '<a href="index.php?action=tweetForm"><img src="img/toui.png" alt="Touiter"></a>';
+            $html .= '<a href="index.php?action=tweetForm"><img id="write" src="img/toui.png" alt="Touiter"></a>';
 
             $html .= '<h2>Score moyen</h2>';
             $html .= '<div class="score">';
@@ -62,7 +61,7 @@ class ProfileAction {
 
             $html .= '<h2>Mes Touites</h2><ul>';
             foreach ($myTouites as $touite) {
-                $html .= '<li>';
+                $html .= '<li id="prof">';
                 $html .= '<strong>' . htmlspecialchars($touite['idUser']) . '</strong>';
                 $html .= '<p>' . htmlspecialchars($touite['message']) . '</p>';
                 $html .= '<small>' . htmlspecialchars($touite['dateTouite']) . '</small>';
@@ -72,7 +71,7 @@ class ProfileAction {
 
             $html .= '<h2>Touites des personnes que je suis</h2><ul>';
             foreach ($followedTouites as $touite) {
-                $html .= '<li>';
+                $html .= '<li id="prof"';
                 $html .= '<strong>' . htmlspecialchars($touite['idUser']) . '</strong>';
                 $html .= '<p>' . htmlspecialchars($touite['message']) . '</p>';
                 $html .= '<small>' . htmlspecialchars($touite['dateTouite']) . '</small>';
@@ -82,13 +81,12 @@ class ProfileAction {
 
             $html .= '<h2>Touites contenant les tags auxquels je suis abonné</h2><ul>';
             foreach ($taggedTouites as $touite) {
-                $html .= '<li>';
+                $html .= '<li id="prof">';
                 $html .= '<strong>' . htmlspecialchars($touite['idUser']) . '</strong>';
                 $html .= '<p>' . htmlspecialchars($touite['message']) . '</p>';
                 $html .= '<small>' . htmlspecialchars($touite['dateTouite']) . '</small>';
                 $html .= '</li>';
             }
-            $html .= '<a href="menu.php" class="back-button">Retour au menu</a>';
 
             $html .= '</ul>';
 

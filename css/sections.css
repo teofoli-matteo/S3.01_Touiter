@@ -1,40 +1,50 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 5em;
+    margin-left: 200px;
     padding: 0;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
+    background-color: #474242;
+    display: flex;
+    flex-direction : column;
+    align-items: center;
+    justify-content: center;
 }
 
-h1, h2 {
-    color: #333;
-    text-align: center;
-}
 
 h2 {
+    color: white;
+    text-align: center;
     margin-top: 50px;
+}
+
+#titre-noir {
+    color: black;
+
 }
 
 h1 {
     margin-top: 5px; /* Ajoute une marge en haut pour l'espace */
-    position: relative; /* Position relative pour permettre des éléments enfants positionnés par rapport à ce titre */
+    colortext-align: center;
+    margin-top: 50px;: white;
+    text-align: center;
+    position: relative;
 }
 
-h1::before,
-h1::after {
+#monP::before,
+#monP::after {
     content: ''; /* Contenu vide pour générer les éléments décoratifs */
     position: absolute; /* Position absolue par rapport au titre h2 */
     top: 50%; /* Aligner au milieu du titre */
     width: 60%; /* Largeur des éléments décoratifs (peut être ajustée) */
     height: 2px; /* Hauteur des éléments décoratifs (peut être ajustée) */
-    background-color: #333; /* Couleur des éléments décoratifs */
+    background-color: white; /* Couleur des éléments décoratifs */
 }
 
-h1::before {
+#monP::before {
     left: 0; /* Positionner à gauche du titre */
     margin-left: -25%; /* Ajustement pour que le titre ne dépasse pas les bords */
 }
 
-h1::after {
+#monP::after {
     right: 0; /* Positionner à droite du titre */
     margin-right: -25%; /* Ajustement pour que le titre ne dépasse pas les bords */
 }
@@ -46,7 +56,7 @@ ul {
     padding: 0;
 }
 
-li {
+#prof {
     background-color: #fff;
     margin-bottom: 10px;
     padding: 20px;
@@ -54,36 +64,26 @@ li {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-li strong {
+#prof strong {
     display: block;
     color: #666;
 }
 
-li p {
+#prof p {
     margin: 10px 0;
     color: #333;
 }
 
-li small {
+#prof small {
     display: block;
     text-align: right;
     color: #999;
 }
 
-.back-button {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 3px;
-    transition: background-color 0.3s ease;
-}
-
-.back-button:hover {
-    background-color: #666;
+#write {
+    float: right;
+    max-width: 50px;
+    max-height: 50px;
 }
 
 .score {
@@ -98,8 +98,8 @@ li small {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
+    background-color: white;
+    color: #333;
     text-decoration: none;
     border-radius: 3px;
     transition: background-color 0.3s ease;
@@ -109,13 +109,7 @@ li small {
     background-color: #666;
 }
 
-img {
-    float: right;
-    max-width: 50px;
-    max-height: 50px;
-}
-
-.follow {
+.listes {
     background-color: #fff;
     margin-bottom: 10px;
     padding: 20px;
@@ -123,3 +117,47 @@ img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* partie followers */
+
+.followers-container {
+    margin: 9em;
+    background-color: #fff; /* Fond de la boîte des followers */
+    border-radius: 10px;
+    padding: 10px;
+    width: 400px;
+
+}
+
+
+.followers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.followers-list li {
+    background-color: #f5f8fa; /* Une nuance de gris similaire à Twitter */
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* partie back button */
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #666;
+}

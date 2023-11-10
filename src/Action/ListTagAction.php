@@ -45,7 +45,7 @@ class ListTagAction {
 
                 $html = '<h1>Liste des tags</h1><ul>';
                 foreach ($tags as $tag) {
-                    $html .= '<li>';
+                    $html .= '<li class="listes">';
                     $html .= htmlspecialchars($tag['libelle']);
                     $html .= '<form class="tag-form" action="index.php?action=listTag" method="post">';
                     $html .= '<input type="hidden" name="idTag" value="' . $tag['idTag'] . '">';
@@ -76,8 +76,6 @@ class ListTagAction {
                 $html .= '    });';
                 $html .= '});';
                 $html .= '</script>';
-
-                $html .= '<a href="menu.php" class="back-button">Retour au menu</a>';
 
                 return $html;
             } catch (PDOException $e) {

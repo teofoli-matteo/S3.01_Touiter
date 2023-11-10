@@ -62,13 +62,11 @@ class Dispatcher {
                 $showF = new ShowFollowers();
                 $this->renderPage($showF->execute());
                 break;
-
-
             case 'scoreMoy':
                 $calculerScoreMoy = new CalculerScoreMoyenAction();
                 $this->renderPage($calculerScoreMoy->execute());
                 break;
-                case 'Administration':
+            case 'Administration':
                 $admin = new AdminAction();
                 $this->renderPage($admin->execute());
                 break;
