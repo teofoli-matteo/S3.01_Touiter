@@ -62,6 +62,7 @@ class Dispatcher {
                 $this->renderPage($showF->execute());
                 break;
 
+
             case 'scoreMoy':
                 $calculerScoreMoy = new CalculerScoreMoyenAction();
                 $this->renderPage($calculerScoreMoy->execute());

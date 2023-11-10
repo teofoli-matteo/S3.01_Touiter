@@ -20,8 +20,6 @@
                 <li class="element_menu"><i class="bi bi-box-arrow-in-right"></i> <a href="index.php?action=signin">Log-in</a></li>
             <?php else: ?>
                 <li class="element_menu"><i class="bi bi-person-square"></i><a href="index.php?action=profileAction"> Profile</a></li>
-                <li class="element_menu"><i class="bi bi-person-square"></i><a href="index.php?action=followers">Abonnés</a></li>
-                <li class="element_menu"><i class="bi bi-person-square"></i><a href="index.php?action=scoreMoy">Moyenne scores</a></li>
                 <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=tweetForm">Poster un Touite</a></li>
                 <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=delete-tweet">Supprimer un Touite</a></li>
                 <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=listTag">Liste des tag</a></li>
