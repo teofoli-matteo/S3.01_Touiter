@@ -66,9 +66,10 @@ class PostTweetAction extends Action {
                     $stmt->execute();
                 }
 
-                // Rediriger l'utilisateur vers la page principale après avoir tweeté
+                // apres avoir ajouter un tweet, on pop un message de succes
+                $_SESSION['success'] = "Votre tweet a été publié avec succès !";
                 header("Location: /index.php");
-                exit();
+
             } catch (\PDOException $e) {
                 echo "Erreur lors de l'ajout du tweet : " . $e->getMessage();
             }

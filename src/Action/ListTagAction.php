@@ -42,13 +42,35 @@ class ListTagAction {
                 foreach ($tags as $tag) {
                     $html .= '<li>';
                     $html .= htmlspecialchars($tag['libelle']);
-                    $html .= '<form action="index.php?action=listTag" method="post">';
+                    $html .= '<form class="tag-form" action="index.php?action=listTag" method="post">';
                     $html .= '<input type="hidden" name="idTag" value="' . $tag['idTag'] . '">';
                     $html .= '<button type="submit">S\'abonner</button>';
                     $html .= '</form>';
                     $html .= '</li>';
                 }
                 $html .= '</ul>';
+
+                $html .= '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>';
+                $html .= '<script>';
+                $html .= '$(document).ready(function() {';
+                $html .= '    $(".tag-form").on("submit", function(e) {';
+                $html .= '        e.preventDefault();';
+                $html .= '';
+                $html .= '        $.ajax({';
+                $html .= '            type: "post",';
+                $html .= '            url: $(this).attr("action"),';
+                $html .= '            data: $(this).serialize(),';
+                $html .= '            success: function(response) {';
+                $html .= '                alert(response);';
+                $html .= '                location.reload();';
+                $html .= '            },';
+                $html .= '            error: function(err) {';
+                $html .= '                console.log(err);';
+                $html .= '            }';
+                $html .= '        });';
+                $html .= '    });';
+                $html .= '});';
+                $html .= '</script>';
 
                 $html .= '<a href="menu.php" class="back-button">Retour au menu</a>';
 
