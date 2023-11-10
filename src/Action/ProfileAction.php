@@ -42,7 +42,16 @@ class ProfileAction {
 
             $taggedTouites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $html = '<h1>Mon profil</h1><h2>Mes Touites</h2><ul>';
+            $scoreAction = new CalculerScoreMoyenAction();
+            $averageScore = $scoreAction->execute();
+
+            $html = '<h1>Mon profil</h1><h2>Score moyen</h2>';
+            $html .= '<div class="score">';
+            $html .= '<p>' . $averageScore . '</p>';
+            $html .= '</div>';
+            $html .= '</ul>';
+
+            $html .= '<h2>Mes Touites</h2><ul>';
             foreach ($myTouites as $touite) {
                 $html .= '<li>';
                 $html .= '<strong>' . htmlspecialchars($touite['idUser']) . '</strong>';
@@ -82,7 +91,7 @@ class ProfileAction {
                         function refreshPage() {
                         location.reload(true);
                         }
-                        </script>'
+                        </script>';
 
             return $html;
         } catch (PDOException $e) {
@@ -144,5 +153,13 @@ li small {
 .back-button:hover {
     background-color: #666;
 }
+
+    .score {
+        background-color: #fff;
+        margin-bottom: 10px;
+        padding: 20px;
+        border-radius: 3px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
 </style>

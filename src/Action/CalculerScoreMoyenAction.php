@@ -30,7 +30,7 @@ class CalculerScoreMoyenAction extends Action {
             // Calculer le score moyen
             $averageScore = $totalLike - $totalDislike;
 
-            return "Le score moyen de vos tweets est : " . $averageScore;
+            return "Le score moyen de mes touites est : " . $averageScore;
         } else {
             // Si l'utilisateur n'est pas connecté, rediriger vers le menu
             echo "Vous n'êtes pas connecté";

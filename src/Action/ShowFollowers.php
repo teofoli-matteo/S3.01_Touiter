@@ -10,34 +10,32 @@ class ShowFollowers extends Action {
             $userId = $_SESSION['user_id'];
             $db = connexionFactory::makeConnection();
 
-            // Récupérer les followers de l'utilisateur connecté
-            $stmt = $db->prepare("SELECT idUser FROM user_followers WHERE followerId = :user_id");
+            $stmt = $db->prepare("SELECT followerId as user_id FROM user_followers WHERE idUser = :user_id");
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
             $stmt->execute();
             $followers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Récupérer les noms des utilisateurs qui suivent l'utilisateur connecté
             $followerNames = [];
             foreach ($followers as $follower) {
-                $stmt = $db->prepare("SELECT idUser FROM users WHERE idUser = :user_id");
+                $stmt = $db->prepare("SELECT idUser as user_id FROM users WHERE idUser = :user_id");
                 $stmt->bindParam(':user_id', $follower['user_id'], PDO::PARAM_STR);
                 $stmt->execute();
-                $followerName = $stmt->fetch(PDO::FETCH_ASSOC)['username'];
+                $followerName = $stmt->fetch(PDO::FETCH_ASSOC)['user_id'];
                 $followerNames[] = $followerName;
             }
 
-            // Afficher les followers
             ob_start();
-            echo "<h2>Vos Followers :</h2>";
-            echo "<ul>";
+            echo '<div class="followers-container">';
+            echo "<h2>Mes Followers :</h2>";
+            echo "<ul class='followers-list'>";
             foreach ($followerNames as $followerName) {
                 echo "<li>{$followerName}</li>";
             }
             echo "</ul>";
-            echo " Les followers sont bien affichés";
+            echo '<a href="menu.php" class="back-button">Retour au menu</a>';
+            echo '</div>';
             return ob_get_clean();
         } else {
-            // Si l'utilisateur n'est pas connecté, rediriger vers le menu
             echo "Vous n'êtes pas connecté";
             header("Location: /menu.php");
             exit();
@@ -45,3 +43,57 @@ class ShowFollowers extends Action {
     }
 }
 ?>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: grey;
+        color: #1c1e21;
+    }
+
+    .followers-container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff; /* Fond de la boîte des followers */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: black;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .followers-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .followers-list li {
+        background-color: #f5f8fa; /* Une nuance de gris similaire à Twitter */
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+        background-color: #666;
+    }
+</style>
+
