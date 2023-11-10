@@ -82,3 +82,6 @@ Class AdminAction{
     }
 }
 ?>
+
+
+<link rel="stylesheet" href="css/sections.css">
