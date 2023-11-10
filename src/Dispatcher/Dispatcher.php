@@ -12,6 +12,8 @@ use src\Action\DeleteTweetAction;
 use src\Action\ListTagAction;
 use src\Action\FollowUserAction;
 use src\Action\ProfileAction;
+use src\Action\LikeDislikeAction;
+
 
 
 class Dispatcher {
@@ -67,6 +69,10 @@ class Dispatcher {
             case 'scoreMoy':
                 $calculerScoreMoy = new CalculerScoreMoyenAction();
                 $this->renderPage($calculerScoreMoy->execute());
+                break;
+            case 'ListeTweets':
+                $liketweet = new LikeDislikeAction();
+                $this->renderPage($liketweet->execute());
                 break;
             case 'Administration':
                 $admin = new AdminAction();
