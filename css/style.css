@@ -54,6 +54,7 @@ ul {
 }
 
 .element_menu a {
+    color: white;
     text-decoration: none;
 }
 
@@ -91,7 +92,7 @@ ul li:hover {
 
 div.pagination a{
     text-decoration: none;
-    color: #333;
+    color: white;
     padding: 5px;
 }
 
