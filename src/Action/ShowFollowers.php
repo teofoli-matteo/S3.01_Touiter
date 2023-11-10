@@ -37,7 +37,7 @@ class ShowFollowers extends Action {
             return ob_get_clean();
         } else {
             echo "Vous n'êtes pas connecté";
-            header("Location: /menu.php");
+            header("Location: /index.php");
             exit();
         }
     }
