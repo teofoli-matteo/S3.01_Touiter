@@ -9,7 +9,11 @@ class ProfileAction {
     public function execute(): string {
         $idUser = $_COOKIE['user_id'];
         if (!isset($_COOKIE['user_id'])) {
-            return "Veuillez vous connecter pour voir votre profil.";
+            // alerte d'erreur comme quoi l'on est pas connecté et redirection vers le menu
+            echo '<script>
+                    window.location.href = "index.php?action=menu";
+                    alert("Vous devez être connecté pour accéder à cette page !");
+                </script>';
         }
 
         try {
@@ -62,10 +66,6 @@ class ProfileAction {
                 $html .= '<strong>' . htmlspecialchars($touite['idUser']) . '</strong>';
                 $html .= '<p>' . htmlspecialchars($touite['message']) . '</p>';
                 $html .= '<small>' . htmlspecialchars($touite['dateTouite']) . '</small>';
-                $html .= '<form class="redbutton" method="post" action="index.php?action=delete-tweet">';
-                $html .= '<input type="hidden" name="idTouite" value="' . htmlspecialchars($touite['idTouite']) . '">';
-                $html .= '<input type="submit" value="Supprimer">';
-                $html .= '</form>';
                 $html .= '</li>';
             }
             $html .= '</ul>';
@@ -91,12 +91,6 @@ class ProfileAction {
             $html .= '<a href="menu.php" class="back-button">Retour au menu</a>';
 
             $html .= '</ul>';
-            $html .= '<script>
-                        // JavaScript pour actualiser la page après la suppression dun touite
-                        function refreshPage() {
-                        location.reload(true);
-                        }
-                        </script>';
 
             return $html;
         } catch (PDOException $e) {

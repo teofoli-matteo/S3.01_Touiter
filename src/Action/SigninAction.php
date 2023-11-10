@@ -26,7 +26,8 @@ class SigninAction extends Action {
                     // Création d'un cookie avec l'idUser
                     setcookie('user_id', $user['idUser'], time() + 3600, '/'); // Le cookie expire dans 1 heure
 
-                    header("Location: /");
+                    // renvoi vers le menu.php
+                    header('Location: index.php');
                     exit();
                 } else {
                     echo "L'authentification a échoué. Veuillez vérifier vos identifiants.";

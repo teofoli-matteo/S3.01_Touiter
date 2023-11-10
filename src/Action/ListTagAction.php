@@ -22,7 +22,12 @@ class ListTagAction {
                 $stmt->bindParam(':idTag', $idTag);
                 $stmt->execute();
 
-                return "Abonnement au tag réussi !";
+                // script pour rafraichir la page après l'abonnement au tag et affiche une alerte de confirmation
+                echo '<script>
+                        window.location.href = "index.php?action=listTag";
+                        alert("Vous êtes maintenant abonné à ce tag !");
+                    </script>';
+
             } catch (PDOException $e) {
                 return "Erreur d'abonnement au tag: " . $e->getMessage();
             }

@@ -1,6 +1,7 @@
 <?php
 namespace src\Dispatcher;
 
+use src\Action\AdminAction;
 use src\Action\CalculerScoreMoyenAction;
 use src\Action\RegisterAction;
 use src\Action\ShowFollowers;
@@ -66,6 +67,10 @@ class Dispatcher {
             case 'scoreMoy':
                 $calculerScoreMoy = new CalculerScoreMoyenAction();
                 $this->renderPage($calculerScoreMoy->execute());
+                break;
+                case 'Administration':
+                $admin = new AdminAction();
+                $this->renderPage($admin->execute());
                 break;
             default:
                 $this->renderPage(file_get_contents('menu.php'));

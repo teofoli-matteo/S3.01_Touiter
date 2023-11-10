@@ -35,7 +35,12 @@ class RegisterAction extends Action {
                 $stmt->bindParam(':Nom', $Nom);
                 $stmt->execute();
 
-                return "Inscription réussie !";
+                // script qui s'éxécute automatiquement pour rediriger l'utilisateur vers la page de connexion
+                echo "<script type='text/javascript'>document.location.replace('index.php');
+                              alert('Inscription réussie !');
+                        </script>";
+                // affiche une alerte comme quoi l'inscription s'est bien déroulée
+
             } catch (PDOException $e) {
                 return "Erreur d'inscription: " . $e->getMessage();
             }

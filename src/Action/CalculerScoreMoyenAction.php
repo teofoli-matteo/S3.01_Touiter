@@ -28,13 +28,25 @@ class CalculerScoreMoyenAction extends Action {
             }
 
             // Calculer le score moyen
-            $averageScore = $totalLike - $totalDislike;
+            if ($totalLike == $totalDislike)
+            $averageScore = 0;
+            else if ($totalDislike == 0)
+                $averageScore = $totalLike;
+            else if ($totalLike == 0)
+                $averageScore = -$totalDislike;
+            else if ($totalLike > $totalDislike)
+                $averageScore = $totalLike - $totalDislike;
+            else if ($totalLike < $totalDislike)
+                $averageScore = $totalLike - $totalDislike;
 
             return "Le score moyen de mes touites est : " . $averageScore;
         } else {
             // Si l'utilisateur n'est pas connecté, rediriger vers le menu
-            echo "Vous n'êtes pas connecté";
-            header("Location: /menu.php");
+            // alerte d'erreur comme quoi l'on est pas connecté et redirection vers le menu
+            echo '<script>
+                    window.location.href = "index.php?action=menu";
+                    alert("Vous devez être connecté pour accéder à cette page !");
+                </script>';
             exit();
         }
     }

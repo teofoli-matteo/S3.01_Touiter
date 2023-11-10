@@ -24,11 +24,23 @@
                 <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=delete-tweet">Supprimer un Touite</a></li>
                 <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=listTag">Liste des tag</a></li>
                 <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=followUser">Liste des User</a></li>
+                <li class="element_menu"><i class="bi bi-pc"></i> <a href="index.php?action=Administration">Administration</a></li>
             <?php endif; ?>
         </ul>
         <div id="deconnexion">
             <li class="element_menu"><i class="bi bi-box-arrow-in-left"></i> Deconnexion</li>
         </div>
     </div>
+    <script>
+        const deconnexion = document.querySelector('#deconnexion');
+        deconnexion.addEventListener('click', () => {
+            document.cookie = 'user_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            window.location.href = 'index.php?';
+        });
+        const logo = document.querySelector('#logo');
+        logo.addEventListener('click', () => {
+            window.location.href = 'index.php?';
+        });
+    </script>
 </body>
 </html>

@@ -29,9 +29,17 @@ class DeleteTweetAction extends Action {
                     $stmt->bindParam(':tweet_id', $tweetId, PDO::PARAM_INT);
                     $stmt->execute();
 
-                    return "Le tweet a été supprimé avec succès !";
+                    // alerte de confirmation de suppression
+                    echo '<script>
+                            window.location.href = "index.php?action=delete-tweet";
+                            alert("Votre tweet a bien été supprimé !");
+                        </script>';
                 } else {
-                    return "Vous n'avez pas le droit de supprimer ce tweet.";
+                    // alerte d'erreur si le tweet n'appartient pas à l'utilisateur connecté
+                    echo '<script>
+                            window.location.href = "index.php?action=delete-tweet";
+                            alert("Vous ne pouvez pas supprimer ce tweet !");
+                        </script>';
                 }
             }
 
