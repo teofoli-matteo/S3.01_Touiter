@@ -29,7 +29,7 @@ class LikeDislikeAction {
 
             $touites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $html = '<h1>Les Touites</h1><ul>';
+            $html = '<h1>Liste des touites à fav</h1><ul>';
 
             foreach ($touites as $t) {
                 $html .= '<li class="tweet">';

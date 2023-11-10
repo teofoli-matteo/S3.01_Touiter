@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 10 nov. 2023 à 19:02
+-- Généré le : ven. 10 nov. 2023 à 19:19
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `image` (
-  `IdTouite` int(11) NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `description` varchar(1000) DEFAULT NULL
+                         `IdTouite` int(11) NOT NULL,
+                         `url` varchar(255) NOT NULL,
+                         `description` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -38,8 +38,28 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`IdTouite`, `url`, `description`) VALUES
-(1, 'img/profile-picture.jpg', NULL),
-(2, 'img/image.jpeg', NULL);
+                                                           (1, 'img/profile-picture.jpg', NULL),
+                                                           (2, 'img/image.jpeg', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `likes_dislikes`
+--
+
+CREATE TABLE `likes_dislikes` (
+                                  `id` int(11) NOT NULL,
+                                  `idTouite` int(11) DEFAULT NULL,
+                                  `idUser` varchar(40) DEFAULT NULL,
+                                  `action` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `likes_dislikes`
+--
+
+INSERT INTO `likes_dislikes` (`id`, `idTouite`, `idUser`, `action`) VALUES
+    (1, 1067272, 'lh', 1);
 
 -- --------------------------------------------------------
 
@@ -48,8 +68,8 @@ INSERT INTO `image` (`IdTouite`, `url`, `description`) VALUES
 --
 
 CREATE TABLE `listetouites_tag` (
-  `idTouite` int(11) NOT NULL,
-  `idTag` int(11) NOT NULL
+                                    `idTouite` int(11) NOT NULL,
+                                    `idTag` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -57,13 +77,13 @@ CREATE TABLE `listetouites_tag` (
 --
 
 INSERT INTO `listetouites_tag` (`idTouite`, `idTag`) VALUES
-(1, 1),
-(2, 2),
-(3, 2),
-(1067271, 9),
-(1067272, 10),
-(1067273, 11),
-(1067274, 12);
+                                                         (1, 1),
+                                                         (2, 2),
+                                                         (3, 2),
+                                                         (1067271, 9),
+                                                         (1067272, 10),
+                                                         (1067273, 11),
+                                                         (1067274, 12);
 
 -- --------------------------------------------------------
 
@@ -72,9 +92,9 @@ INSERT INTO `listetouites_tag` (`idTouite`, `idTag`) VALUES
 --
 
 CREATE TABLE `note` (
-  `idUser` varchar(32) NOT NULL,
-  `idTouite` int(11) NOT NULL,
-  `Likes` int(11) DEFAULT NULL
+                        `idUser` varchar(32) NOT NULL,
+                        `idTouite` int(11) NOT NULL,
+                        `Likes` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -84,10 +104,10 @@ CREATE TABLE `note` (
 --
 
 CREATE TABLE `tag` (
-  `IdTouite` int(11) NOT NULL,
-  `libelle` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `nbMention` int(11) DEFAULT NULL
+                       `IdTouite` int(11) NOT NULL,
+                       `libelle` varchar(255) NOT NULL,
+                       `description` text DEFAULT NULL,
+                       `nbMention` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -97,9 +117,9 @@ CREATE TABLE `tag` (
 --
 
 CREATE TABLE `tagtest` (
-  `idTag` int(11) NOT NULL,
-  `libelle` varchar(255) DEFAULT NULL,
-  `description` varchar(1000) DEFAULT NULL
+                           `idTag` int(11) NOT NULL,
+                           `libelle` varchar(255) DEFAULT NULL,
+                           `description` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -107,12 +127,12 @@ CREATE TABLE `tagtest` (
 --
 
 INSERT INTO `tagtest` (`idTag`, `libelle`, `description`) VALUES
-(2, 'cat', 'Posts mentionnant les chats.'),
-(3, 'bg', 'Beau gosse'),
-(9, 'cat', ''),
-(10, 'Gratitude', ''),
-(11, 'Gandhi', ''),
-(12, 'gratitude', '');
+                                                              (2, 'cat', 'Posts mentionnant les chats.'),
+                                                              (3, 'bg', 'Beau gosse'),
+                                                              (9, 'cat', ''),
+                                                              (10, 'Gratitude', ''),
+                                                              (11, 'Gandhi', ''),
+                                                              (12, 'gratitude', '');
 
 -- --------------------------------------------------------
 
@@ -121,12 +141,12 @@ INSERT INTO `tagtest` (`idTag`, `libelle`, `description`) VALUES
 --
 
 CREATE TABLE `touite` (
-  `idTouite` int(11) NOT NULL,
-  `idUser` varchar(32) DEFAULT NULL,
-  `dateTouite` datetime DEFAULT NULL,
-  `message` varchar(235) DEFAULT NULL,
-  `nbLike` int(11) DEFAULT NULL,
-  `nbDislike` int(11) DEFAULT NULL
+                          `idTouite` int(11) NOT NULL,
+                          `idUser` varchar(32) DEFAULT NULL,
+                          `dateTouite` datetime DEFAULT NULL,
+                          `message` varchar(235) DEFAULT NULL,
+                          `nbLike` int(11) DEFAULT NULL,
+                          `nbDislike` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -134,13 +154,13 @@ CREATE TABLE `touite` (
 --
 
 INSERT INTO `touite` (`idTouite`, `idUser`, `dateTouite`, `message`, `nbLike`, `nbDislike`) VALUES
-(1067271, 'linouts', '2023-11-10 18:49:07', 'Le Chat domestique est une espèce de mammifères carnivores, de la famille des Félidés. #cat', 0, 0),
-(1067272, 'linouts', '2023-11-10 18:50:55', 'Se sentir reconnaissant(e) pour les petits moments qui apportent de la joie dans nos vies <3\r\n#Gratitude ', 0, 0),
-(1067273, 'matt', '2023-11-10 18:55:32', 'Soyez le changement que vous voulez voir dans le monde. #Gandhi', 0, 0),
-(1067274, 'matt', '2023-11-10 18:56:12', 'Chaque journée est une nouvelle occasion de changer votre vie. #gratitude', 0, 0),
-(1067275, 'ale', '2023-11-10 18:58:08', 'Le succès n\'est pas la clé du bonheur. Le bonheur est la clé du succès. Si vous aimez ce que vous faites, vous réussirez.', 0, 0),
-(1067276, 'ale', '2023-11-10 19:00:02', 'Le succès consiste à passer d\'échec en échec sans perdre son enthousiasme.', 0, 0),
-(1067277, 'lh', '2023-11-10 19:01:19', 'La plus grande gloire n\'est pas de ne jamais tomber, mais de se relever à chaque chute.', 0, 0);
+    (1067271, 'linouts', '2023-11-10 18:49:07', 'Le Chat domestique est une espèce de mammifères carnivores, de la famille des Félidés. #cat', 0, 0),
+    (1067272, 'linouts', '2023-11-10 18:50:55', 'Se sentir reconnaissant(e) pour les petits moments qui apportent de la joie dans nos vies <3\r\n#Gratitude ', 0, 0),
+    (1067273, 'matt', '2023-11-10 18:55:32', 'Soyez le changement que vous voulez voir dans le monde. #Gandhi', 0, 0),
+    (1067274, 'matt', '2023-11-10 18:56:12', 'Chaque journée est une nouvelle occasion de changer votre vie. #gratitude', 0, 0),
+    (1067275, 'ale', '2023-11-10 18:58:08', 'Le succès n est pas la clé du bonheur. Le bonheur est la clé du succès. Si vous aimez ce que vous faites, vous réussirez.', 0, 0),
+    (1067276, 'ale', '2023-11-10 19:00:02', 'Le succès consiste à passer d échec en échec sans perdre son enthousiasme.', 0, 0),
+    (1067277, 'lh', '2023-11-10 19:01:19', 'La plus grande gloire n est pas de ne jamais tomber, mais de se relever à chaque chute.', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -225,6 +245,14 @@ ALTER TABLE `image`
   ADD KEY `idTouite` (`IdTouite`);
 
 --
+-- Index pour la table `likes_dislikes`
+--
+ALTER TABLE `likes_dislikes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idTouite` (`idTouite`),
+  ADD KEY `idUser` (`idUser`);
+
+--
 -- Index pour la table `listetouites_tag`
 --
 ALTER TABLE `listetouites_tag`
@@ -282,6 +310,12 @@ ALTER TABLE `user_tag`
 --
 
 --
+-- AUTO_INCREMENT pour la table `likes_dislikes`
+--
+ALTER TABLE `likes_dislikes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT pour la table `tagtest`
 --
 ALTER TABLE `tagtest`
@@ -292,6 +326,17 @@ ALTER TABLE `tagtest`
 --
 ALTER TABLE `touite`
   MODIFY `idTouite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1067278;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `likes_dislikes`
+--
+ALTER TABLE `likes_dislikes`
+  ADD CONSTRAINT `likes_dislikes_ibfk_1` FOREIGN KEY (`idTouite`) REFERENCES `touite` (`idTouite`),
+  ADD CONSTRAINT `likes_dislikes_ibfk_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`idUser`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
