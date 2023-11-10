@@ -41,8 +41,8 @@ class FollowUserAction {
 
                 $html = '<h1>Liste des utilisateurs</h1><ul>';
                 foreach ($users as $user) {
-                    $html .= '<li>';
-                    $html .= htmlspecialchars($user['idUser']);
+                    $html .= '<li class="follow">';
+                    $html .= '<strong>' . htmlspecialchars($user['idUser']) . '</strong>';
                     $html .= '<form class="follow-form" action="index.php?action=followUser" method="post">';
                     $html .= '<input type="hidden" name="idUser" value="' . $user['idUser'] . '">';
                     $html .= '<button type="submit">Suivre</button>';
@@ -73,6 +73,8 @@ class FollowUserAction {
                 $html .= '});';
                 $html .= '</script>';
 
+                $html .= '<a href="menu.php" class="back-button">Retour au menu</a>';
+
                 return $html;
             } catch (PDOException $e) {
                 return "Erreur lors de la récupération des utilisateurs: " . $e->getMessage();
@@ -80,3 +82,6 @@ class FollowUserAction {
         }
     }
 }
+
+?>
+<link rel="stylesheet" href="css/sections.css">

@@ -42,6 +42,10 @@ ul {
     transition: background-color 0.3s;
 }
 
+.element_menu a {
+    text-decoration: none;
+}
+
 ul li:hover {
     background-color: #555;
 }

@@ -11,7 +11,7 @@
 <body>
     <div id="menu">
         <div id="logo">
-            <img src="logo.png" alt="Logo">
+            <img src="img/logo.png" alt="Logo">
             <h4>Touiter.app</h4>
         </div>
         <ul>
