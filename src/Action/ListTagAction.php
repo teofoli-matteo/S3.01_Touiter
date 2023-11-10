@@ -50,6 +50,8 @@ class ListTagAction {
                 }
                 $html .= '</ul>';
 
+                $html .= '<a href="menu.php" class="back-button">Retour au menu</a>';
+
                 return $html;
             } catch (PDOException $e) {
                 return "Erreur lors de la récupération des tags: " . $e->getMessage();
@@ -57,3 +59,7 @@ class ListTagAction {
         }
     }
 }
+
+?>
+
+<link rel="stylesheet" href="css/sections.css">
