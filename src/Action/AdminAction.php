@@ -57,7 +57,7 @@ Class AdminAction{
         $html .= '<ul>';
         //affichage des 5 users avec le plus de followers par ordre croissant
         foreach ($users as $user) {
-            $html .= '<li>';
+            $html .= '<li class="listes">';
             $html .= '<strong> Pseudo : ' . htmlspecialchars($user['idUser']) . '</strong>';
             $html .= '<p> nombres de  : ' . htmlspecialchars($user['nbFollower']) . '</p>';
             $html .= '</li>';
@@ -68,15 +68,13 @@ Class AdminAction{
         $html .= '<div class="tendances">';
         $html .= '<ul>';
         foreach ($tags as $tag) {
-            $html .= '<li>';
+            $html .= '<li class="listes">';
             $html .= '<strong> Tag : ' . htmlspecialchars($tag['libelle']) . '</strong>';
             $html .= '<p> nombre de mentions : ' . htmlspecialchars($tag['nbMentions']) . '</p>';
             $html .= '</li>';
         }
         $html .= '</ul>';
         $html .= '</div>';
-        $html .= '<a href="menu.php" class="back-button">Retour au menu</a>';
-
         return $html;
         ob_clean();
     }
