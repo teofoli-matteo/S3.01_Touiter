@@ -16,9 +16,11 @@
     </div>
     <ul>
         <?php if (!isset($_COOKIE['user_id'])): ?>
+            <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=displayTweets">Accueil</a></li>
             <li class="element_menu"><i class="bi bi-person-lines-fill"></i> <a href="index.php?action=register">Register</a></li>
             <li class="element_menu"><i class="bi bi-box-arrow-in-right"></i> <a href="index.php?action=signin">Log-in</a></li>
         <?php else: ?>
+            <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=displayTweets">Accueil</a></li>
             <li class="element_menu"><i class="bi bi-person-square"></i><a href="index.php?action=profileAction"> Profile</a></li>
             <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=tweetForm">Poster un Touite</a></li>
             <li class="element_menu"><i class="bi bi-chat-dots"></i> <a href="index.php?action=delete-tweet">Supprimer un Touite</a></li>
