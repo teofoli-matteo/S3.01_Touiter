@@ -8,6 +8,8 @@ class DeleteTweetAction extends Action {
     public function execute(): string {
         // session_start();
 
+        $htmlContent = ''; // Variable tampon pour stocker le contenu HTML
+
         if (isset($_SESSION['user_id'])) {
             $userId = $_SESSION['user_id'];
             $db = connexionFactory::makeConnection();
@@ -30,13 +32,13 @@ class DeleteTweetAction extends Action {
                     $stmt->execute();
 
                     // alerte de confirmation de suppression
-                    echo '<script>
+                    $htmlContent .= '<script>
                             window.location.href = "index.php?action=delete-tweet";
                             alert("Votre tweet a bien été supprimé !");
                         </script>';
                 } else {
                     // alerte d'erreur si le tweet n'appartient pas à l'utilisateur connecté
-                    echo '<script>
+                    $htmlContent .= '<script>
                             window.location.href = "index.php?action=delete-tweet";
                             alert("Vous ne pouvez pas supprimer ce tweet !");
                         </script>';
@@ -50,19 +52,25 @@ class DeleteTweetAction extends Action {
             $tweets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Afficher le formulaire de suppression avec les tweets de l'utilisateur
-            ob_start();
-            include 'src/User/delete-tweet-form.php';
-            echo "<h2>Vos Tweets :</h2>";
-            echo "<ul>";
+            $htmlContent .= "<h1>Supprimer un touite</h1>";
+            $htmlContent .= '<form method="post" action="index.php?action=delete-tweet">
+                                <label for="tweetId">ID du Touite à supprimer :</label>
+                                <input type="text" id="tweetId" name="tweet_id" required>
+                                <button type="submit">Supprimer</button>
+                            </form>';
+            $htmlContent .= '<button onclick="window.location.href=\'menu.php\';">Retour au menu</button>';
+            $htmlContent .= "<h2>Vos Tweets :</h2>";
+            $htmlContent .= "<ul>";
             foreach ($tweets as $tweet) {
-                echo "<li><strong>ID du Tweet :</strong> " . $tweet['idTouite'] . " - <strong>Message :</strong> " . $tweet['message'] . " 
+                $htmlContent .= "<li><strong>ID du Tweet :</strong> " . $tweet['idTouite'] . " - <strong>Message :</strong> " . $tweet['message'] . " 
                         <form method='post' action='index.php?action=delete-tweet'>
                             <input type='hidden' name='tweet_id' value='" . $tweet['idTouite'] . "'>
                             <button type='submit'>Supprimer</button>
                         </form></li>";
             }
-            echo "</ul>";
-            return ob_get_clean();
+            $htmlContent .= "</ul>";
+
+            return $htmlContent;
         } else {
             // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
             header("Location: /login");

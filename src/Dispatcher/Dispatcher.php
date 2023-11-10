@@ -45,6 +45,8 @@ class Dispatcher {
                 break;
             case 'tweetForm':
                 include 'src/User/tweetForm.php';
+                $html = returnHTML();
+                $this->renderPage($html);
                 break;
             case 'listTag':
                 $listTag = new ListTagAction();

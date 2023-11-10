@@ -20,7 +20,11 @@ class SearchUserAction extends Action {
                 header("Location: /profile?userId=" . urlencode($userId));
                 exit();
             } else {
-                return "Utilisateur non trouvé.";
+                echo '<script>
+                        window.location.href = "index.php?action=menu";
+                        alert("Aucun utilisateur trouvé avec cet ID !");
+                    </script>';
+                return "Aucun utilisateur trouvé avec cet ID !";
             }
         } else {
             return "Veuillez entrer un ID d'utilisateur.";

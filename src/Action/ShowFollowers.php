@@ -25,16 +25,19 @@ class ShowFollowers extends Action {
             }
 
             ob_start();
-            echo '<div class="followers-container">';
-            echo "<h2>Mes Followers :</h2>";
-            echo "<ul class='followers-list'>";
+            // Stocker le contenu dans la variable $htmlContent au lieu d'utiliser echo
+            $htmlContent = '<div class="followers-container">';
+            $htmlContent .= "<h2>Mes Followers :</h2>";
+            $htmlContent .= "<ul class='followers-list'>";
             foreach ($followerNames as $followerName) {
-                echo "<li>{$followerName}</li>";
+                $htmlContent .= "<li>{$followerName}</li>";
             }
-            echo "</ul>";
-            echo '<a href="menu.php" class="back-button">Retour au menu</a>';
-            echo '</div>';
-            return ob_get_clean();
+            $htmlContent .= "</ul>";
+            $htmlContent .= '<a href="menu.php" class="back-button">Retour au menu</a>';
+            $htmlContent .= '</div>';
+
+            // Récupérer et effacer le contenu du tampon
+            return $htmlContent;
         } else {
             echo "Vous n'êtes pas connecté";
             header("Location: /menu.php");

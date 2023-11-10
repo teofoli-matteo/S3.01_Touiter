@@ -47,7 +47,8 @@ class RegisterAction extends Action {
         } else {
             ob_start();
             include 'src/User/inscription.php';
-            return ob_get_clean();
+            $html = returnHTML();
         }
+        return $html;
     }
 }

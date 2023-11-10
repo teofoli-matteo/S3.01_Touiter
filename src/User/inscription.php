@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-
+function returnHTML(): string {
+    return <<<END
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -121,5 +121,8 @@
 
 
 </html>
+END;
+
+}
 
 
